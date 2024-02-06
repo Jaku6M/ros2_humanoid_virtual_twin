@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="Melman">
-    <!-- Ponizej plik inicjujacy geometrie robota oraz parametry masowo bezwladnosciowe -->
+    <!-- Below is a file which initiates geometry of robot and inertial, dynamic, collision parameters -->
     <xacro:include filename="robot_core.xacro" />
-    <!-- Ponizej znajda sie parametry dotyczace kontroli ruchow Melmana -->    
+    <!-- Below is a file which contains parameters controlling movements of a robot -->    
 </robot>

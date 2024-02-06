@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <!-- TRUNK -->
+  <joint name="Trunk_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="Trunk"/>
+      <!--Origin defines translation child frame relative to parent frame. Translation is performed in parent frame.-->
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  </joint>
+  
+  <link name="Trunk">
+    <visual>
+		  <!--Origin defines geometric center of spawnego object relative to child frame-->
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Trunk.stl"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <inertial>
+      <origin xyz="-7.709e-3	-0.06e-3	-57.629e-3" rpy="0 0 0"/>
+      <mass value="0.691"/>
+      <inertia ixx="1992.6e-6" iyy="1287.385e-6" izz="1142.314e-6" ixy="0.546e-6" ixz="-217.49e-6"  iyz="1.946e-6" />
+    </inertial>    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Trunk-Collision.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="Trunk">
+      <material>Gazebo/Black</material>
+  </gazebo>
+</robot>
