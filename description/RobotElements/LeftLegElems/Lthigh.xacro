@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <joint name="LTy" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="Left_Hip"/>
+      <child link="Left_Thigh"/>
+      <axis xyz="0 1.0 0"/>
+      <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/>
+    </joint>	
+    <link name="Left_Thigh">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Left-Thigh.stl"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Right-Thigh-Collision.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="2.335e-3	0.65e-3	-99.757e-3" rpy="0 0 0"/>
+        <mass value="0.22"/>
+        <inertia ixx="275.661e-6" iyy="250.206e-6" izz="77.57e-6" ixy="0.334e-6" ixz="-7.878e-6"  iyz="-5.455e-6" />
+      </inertial>      
+    </link>    	
+
+</robot>

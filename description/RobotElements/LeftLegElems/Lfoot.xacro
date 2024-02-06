@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <joint name="LFx" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="Left_Ankle"/>
+      <child link="Left_Foot"/>
+      <axis xyz="1.0 0 0"/>
+      <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/>
+    </joint>
+    <link name="Left_Foot">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Left-Foot.stl"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+			<mesh filename="package://ros2_humanoid_virtual_twin/STLe/Left-Foot-collision.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="-4.442e-3	0	-30.98e-3" rpy="0 0 0"/>
+        <mass value="0.088"/>
+        <inertia ixx="42.902e-6" iyy="138.102e-6" izz="160.902e-6" ixy="0" ixz="-0.647e-6"  iyz="0" />
+      </inertial>      
+    </link>	    
+</robot>
