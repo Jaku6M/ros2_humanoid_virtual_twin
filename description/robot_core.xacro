@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- Zdefiniowanie czarnego materialu -->
+  <material name="grey">
+      <color rgba="0.6 0.6 0.6 1"/>
+  </material>
+  <!-- BASE LINK zrobi spawna w 0 0 0-->
+  <link name="base_link">
+  </link>
+
+  <!-- KORPUS -->
+  <joint name="Trunk_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="Trunk"/>
+      <!--Origin definiuje przesuniecie ukladu child wzgledem ukladu parent w ukladzie parent-->
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  </joint>
+  <link name="Trunk">
+    <visual>
+		  <!--Origin definiuje jak srodek geometryczny obiektu ma sie znajdowac wzgledem child frame-->
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Trunk.stl"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <inertial>
+      <origin xyz="-7.709e-3	-0.06e-3	-57.629e-3" rpy="0 0 0"/>
+      <mass value="0.691"/>
+      <inertia ixx="1992.6e-6" iyy="1287.385e-6" izz="1142.314e-6" ixy="0.546e-6" ixz="-217.49e-6"  iyz="1.946e-6" />
+    </inertial>    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Trunk-Collision.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="Trunk">
+      <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- LEWA NOGA -->
+  <joint name="LTz" type="revolute">
+		<!--Origin definiuje przesuniecie ukladu child wzgledem ukladu parent w ukladzie parent-->
+    <origin xyz="0	40e-3	-150.065e-3" rpy="0 0 0"/>
+    <parent link="Trunk"/>
+    <child link="Left_HipMount"/>
+    <axis xyz="0 0 1.0"/>
+    <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/>
+  </joint>  
+  <link name="Left_HipMount">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Left-HipMount.stl"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros2_humanoid_virtual_twin/Left_HipMount_collision"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-14.306e-3	0	24.769e-3" rpy="0 0 0"/>
+      <mass value="0.038"/>
+      <inertia ixx="11.743e-6" iyy="61.298e-6" izz="58.734e-6" ixy="0" ixz="4.429e-6"  iyz="0" />
+    </inertial>    
+  </link>   
+</robot>
