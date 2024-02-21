@@ -7,6 +7,11 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
+add_executable(move_leg config/move_leg.cpp)
+ament_target_dependencies(move_leg rclcpp sensor_msgs)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -26,6 +31,11 @@ endif()
 install(
   DIRECTORY config description launch worlds STLe
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(TARGETS
+  move_leg
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
