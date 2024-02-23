@@ -7,6 +7,10 @@ class LegTrajectoryNode : public rclcpp::Node
 public:
     LegTrajectoryNode() : Node("leg_trajectory_node")
     {
+        declare_parameter<double>("frequency", 2.0); //declare parameter with defeault value 1.
+        get_parameter("frequency", frequency_); //get parameter value
+        RCLCPP_INFO(get_logger(), "Received frequency parameter: %f", frequency_);
+
         publisher_ = create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
         timer_ = create_wall_timer(std::chrono::milliseconds(100), std::bind(&LegTrajectoryNode::publish_joint_states, this));
 
@@ -23,14 +27,13 @@ private:
 
         // Generate sinusoidal trajectory
         double amplitude = 0.1;
-        double frequency = 1.0;
         joint_state_msg->position = {
-            amplitude * std::sin(frequency * time_),
-            amplitude * std::cos(frequency * time_),
-            amplitude * std::sin(frequency * time_),
-            amplitude * std::cos(frequency * time_),
-            amplitude * std::sin(frequency * time_),
-            amplitude * std::cos(frequency * time_)
+            amplitude * std::sin(frequency_ * time_),
+            amplitude * std::cos(frequency_ * time_),
+            amplitude * std::sin(frequency_ * time_),
+            amplitude * std::cos(frequency_ * time_),
+            amplitude * std::sin(frequency_ * time_),
+            amplitude * std::cos(frequency_ * time_)
         };
 
         joint_state_msg->velocity = {};  // You can set velocities if needed
@@ -46,8 +49,9 @@ private:
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
 
-    // Member variable for time in seconds
+    // Member variables 
     double time_;
+    double frequency_;
 };
 
 int main(int argc, char *argv[])

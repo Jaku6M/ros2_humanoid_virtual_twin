@@ -37,12 +37,13 @@ def generate_launch_description():
         output='screen',
         arguments=['-d', os.path.join(get_package_share_directory(pkg_name), 'launch/melman.rviz')],
     )
-
+    #Configuration of node responsible for moving the leg
     node_move_leg = Node(
         package='ros2_humanoid_virtual_twin',
         executable='move_leg',
         name='move_leg',
         output='screen',
+        parameters=[{"frequency": 2.0}]  # Set the frequency parameter here
     )
 
     # Run the node
