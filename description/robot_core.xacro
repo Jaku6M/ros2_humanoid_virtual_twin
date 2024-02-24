@@ -10,4 +10,5 @@
   </link>
   <xacro:include filename="RobotElements/Trunk.xacro"/>
   <xacro:include filename="RobotElements/left_leg.xacro"/>   
+  <xacro:include filename="RobotElements/right_leg.xacro"/>
 </robot>

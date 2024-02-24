@@ -11,7 +11,8 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Foot.stl"/>
+          <!-- Right foot .stl is used to describe right foot because visually its better :)-->
+          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Foot.stl"/>
         </geometry>
         <material name="grey"/>
       </visual>

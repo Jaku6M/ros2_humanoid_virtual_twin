@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <joint name="RFy" type="revolute">
+        <origin xyz="0 0 -128e-3" rpy="0 0 0"/>
+        <parent link="Right_Shank"/>
+        <child link="Right_Ankle"/>
+        <axis xyz="0 1.0 0"/>
+        <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/>
+    </joint>
+    <link name="Right_Ankle">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <!-- Left ankle is used to describe right ankle because visually they're the same -->
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Ankle.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <!-- Left ankle is used to describe right ankle because visually they're the same -->
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Ankle-Collision.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-21.137e-3	0.17e-3	14.739e-3" rpy="0 0 0"/>
+            <mass value="0.351"/>
+            <inertia ixx="135.823e-6" iyy="317.524e-6" izz="266.663e-6" ixy="-1.265e-6" ixz="4.25e-6"  iyz="2.029e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="Right_Ankle">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+</robot>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <joint name="RTz" type="revolute">
+        <origin xyz="0 -40e-03 -150.065e-03" rpy="0 0 0"/>
+        <parent link="Trunk"/>
+        <child link="Right_HipMount"/>
+        <axis xyz="0 0 1.0"/>
+        <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/>
+    </joint>
+    <link name="Right_HipMount">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-HipMount.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-HipMount-Collision.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-14.306e-03 0 24.769e-03" rpy="0 0 0"/>
+            <mass value="0.038"/>
+            <inertia ixx="11.743e-6" iyy="61.298e-6" izz="58.734e-6" ixy="0" ixz="4.429e-6" iyz="0"/>
+        </inertial>
+    </link>
+    <gazebo reference="Right_HipMount">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+</robot>

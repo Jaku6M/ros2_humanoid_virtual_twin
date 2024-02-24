@@ -10,7 +10,7 @@
   
   <link name="Trunk">
     <visual>
-		  <!--Origin defines geometric center of spawnego object relative to child frame-->
+		  <!--Origin defines geometric center of spawned object relative to child frame-->
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Trunk.stl" scale="0.001 0.001 0.001"/>

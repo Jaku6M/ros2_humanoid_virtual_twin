@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <joint name="RSy" type="revolute">
+      <origin xyz="0 0 -128e-3" rpy="0 0 0"/>
+      <parent link="Right_Thigh"/>
+      <child link="Right_Shank"/>
+      <axis xyz="0 1.0 0"/>
+      <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/> 
+    </joint>    
+    <link name="Right_Shank">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Shank.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Shank-Collision.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="4.836e-3	-2.813e-3	-60.226e-3" rpy="0 0 0"/>
+            <mass value="0.059"/>
+            <inertia ixx="128.748e-6" iyy="106.103e-6" izz="37.097e-6" ixy="-0.804e-6" ixz="-3.208e-6"  iyz="-0.627e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="Right_Shank">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+ </robot>  
