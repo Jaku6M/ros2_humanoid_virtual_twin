@@ -24,7 +24,7 @@
         <inertial>
             <origin xyz="0 -3.335e-3 -17.703e-3" rpy="0 0 0"/>
             <mass value="0.011"/>
-            <inertia ixx="4.859e-6" iyy="2.246e-6" izz="3.894e-6" ixy="0" ixz="0"  iyz="0.637e-3"/>
+            <inertia ixx="4.859e-6" iyy="2.246e-6" izz="3.894e-6" ixy="0" ixz="0"  iyz="0.637e-6"/>
         </inertial>
     </link>
     <gazebo reference="Head_Mounting">
