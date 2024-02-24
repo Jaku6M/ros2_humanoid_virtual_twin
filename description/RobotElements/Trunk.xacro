@@ -5,7 +5,7 @@
       <parent link="base_link"/>
       <child link="Trunk"/>
       <!--Origin defines translation child frame relative to parent frame. Translation is performed in parent frame.-->
-      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <origin xyz="0 0 0.45" rpy="0 0 0"/>
   </joint>
   
   <link name="Trunk">

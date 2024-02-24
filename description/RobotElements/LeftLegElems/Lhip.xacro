@@ -6,7 +6,7 @@
       <parent link="Left_HipMount"/>
       <child link="Left_Hip"/>
       <axis xyz="1.0 0 0"/>
-      <limit lower="${-pi}" upper="${pi}" effort="100" velocity="100"/>
+      <limit lower="${-pi/2}" upper="${pi/2}" effort="100" velocity="100"/>
     </joint>	    
     <link name="Left_Hip">
       <visual>

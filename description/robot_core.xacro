@@ -12,4 +12,6 @@
   <xacro:include filename="RobotElements/left_leg.xacro"/>   
   <xacro:include filename="RobotElements/right_leg.xacro"/>
   <xacro:include filename="RobotElements/left_arm.xacro"/>
+  <xacro:include filename="RobotElements/right_arm.xacro"/>
+  <xacro:include filename="RobotElements/head.xacro"/>
 </robot>

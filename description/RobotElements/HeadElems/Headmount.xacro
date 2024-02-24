@@ -1,33 +1,33 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <joint name="RTz" type="revolute">
-        <origin xyz="0 -40e-03 -150.065e-03" rpy="0 0 0"/>
+    <joint name="Hz" type="revolute">
+        <origin xyz="18.061e-3 0.134e-3 42.5e-3" rpy="0 0 0"/>
         <parent link="Trunk"/>
-        <child link="Right_HipMount"/>
+        <child link="Head_Mounting"/>
         <axis xyz="0 0 1.0"/>
         <limit lower="${-pi/2}" upper="${pi/2}" effort="100" velocity="100"/>
     </joint>
-    <link name="Right_HipMount">
+    <link name="Head_Mounting">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-HipMount.stl"/>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/HeadMounting.stl"/>
             </geometry>
             <material name="grey"/>
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-HipMount-Collision.stl"/>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Head-Mounting-Collision.stl"/>
             </geometry>
         </collision>
         <inertial>
-            <origin xyz="-14.306e-03 0 24.769e-03" rpy="0 0 0"/>
-            <mass value="0.038"/>
-            <inertia ixx="11.743e-6" iyy="61.298e-6" izz="58.734e-6" ixy="0" ixz="4.429e-6" iyz="0"/>
+            <origin xyz="0 -3.335e-3 -17.703e-3" rpy="0 0 0"/>
+            <mass value="0.011"/>
+            <inertia ixx="4.859e-6" iyy="2.246e-6" izz="3.894e-6" ixy="0" ixz="0"  iyz="0.637e-3"/>
         </inertial>
     </link>
-    <gazebo reference="Right_HipMount">
+    <gazebo reference="Head_Mounting">
         <material>Gazebo/Grey</material>
     </gazebo>
 </robot>

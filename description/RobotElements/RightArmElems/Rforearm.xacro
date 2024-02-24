@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-    <joint name="LFAy" type="revolute">
+    <joint name="RFAy" type="revolute">
         <origin xyz="0 0 -112.3e-3" rpy="0 0 0"/>
-        <parent link="Left_Arm"/>
-        <child link="Left_Forearm"/>
+        <parent link="Right_Arm"/>
+        <child link="Right_Forearm"/>
         <axis xyz="0 1.0 0"/>
         <limit lower="${-pi/2}" upper="${pi/2}" effort="100" velocity="100"/>
     </joint>
-    <link name="Left_Forearm">
+    <link name="Right_Forearm">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left_ForeArm.stl" scale="0.001 0.001 0.001"/>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right_Forearm.stl" scale="0.001 0.001 0.001"/>
             </geometry>
             <material name="grey"/>
         </visual>
@@ -27,7 +27,7 @@
             <inertia ixx="228.969e-6" iyy="231.48e-6" izz="16.247e-6" ixy="0" ixz="0"  iyz="0.002e-6"/>
         </inertial>
     </link>
-    <gazebo reference="Left_Forearm">
+    <gazebo reference="Right_Forearm">
         <material>Gazebo/Grey</material>
     </gazebo>
 </robot>

@@ -1,0 +1,33 @@
+<?xml version = "1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <joint name="Hy" type="revolute">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="Head_Mounting"/>
+        <child link="Head"/>
+        <axis xyz="0 1.0 0"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="100" velocity="100"/>
+    </joint>
+    <link name="Head">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Head.stl"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Head-Collision.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.022e-3 0.28e-3 11.283e-3" rpy="0 0 0"/>
+            <mass value="0.077"/>
+            <inertia ixx="22.035e-6" iyy="18.242e-6" izz="13.649e-6" ixy="-0.008e-6" ixz="-0.02e-6"  iyz="0.689e-3"/>
+        </inertial>
+    </link>
+    <gazebo reference="Head">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+</robot>

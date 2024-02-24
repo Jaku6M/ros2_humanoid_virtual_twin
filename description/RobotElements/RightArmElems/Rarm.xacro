@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-    <joint name="LAx" type="revolute">
+    <joint name="RAx" type="revolute">
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <parent link="Left_ArmMounting"/>
-        <child link="Left_Arm"/>
+        <parent link="Right_ArmMounting"/>
+        <child link="Right_Arm"/>
         <axis xyz="1.0 0 0"/>
         <limit lower="${-pi/2}" upper="${pi/2}" effort="100" velocity="100"/>
     </joint>
-    <link name="Left_Arm">
+    <link name="Right_Arm">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -27,7 +27,7 @@
             <inertia ixx="269.772e-6" iyy="269.138e-6" izz="29.837e-6" ixy="-0.02e-6" ixz="-1.454e-6"  iyz="-0.269e-6"/>
         </inertial>
     </link>
-    <gazebo reference="Left_Arm">
+    <gazebo reference="Right_Arm">
         <material>Gazebo/Grey</material>
     </gazebo>
 </robot>
