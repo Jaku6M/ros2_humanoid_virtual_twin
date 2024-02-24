@@ -11,14 +11,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Left-Thigh.stl"/>
+          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Thigh.stl"/>
         </geometry>
         <material name="grey"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Right-Thigh-Collision.stl"/>
+            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Thigh-Collision.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -27,5 +27,7 @@
         <inertia ixx="275.661e-6" iyy="250.206e-6" izz="77.57e-6" ixy="0.334e-6" ixz="-7.878e-6"  iyz="-5.455e-6" />
       </inertial>      
     </link>    	
-
+    <gazebo reference="Left_Thigh">
+      <material>Gazebo/Grey</material>
+    </gazebo>
 </robot>

@@ -11,14 +11,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Left-Shank.stl"/>
+          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Shank.stl"/>
         </geometry>
         <material name="grey"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Right-Shank-Collision.stl"/>
+            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Shank-Collision.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -27,4 +27,7 @@
         <inertia ixx="128.748e-6" iyy="106.103e-6" izz="37.097e-6" ixy="-0.804e-6" ixz="-3.208e-6"  iyz="-0.627e-6" />
       </inertial>      
     </link>   	 
+    <gazebo reference="Left_Shank">
+      <material>Gazebo/Grey</material>
+    </gazebo>     
 </robot>

@@ -12,14 +12,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Left-Hip.stl"/>
+          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Hip.stl"/>
         </geometry>
         <material name="grey"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Right-Hip-Collision.stl"/>
+            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Hip-Collision.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -27,5 +27,8 @@
         <mass value="0.351"/>
         <inertia ixx="135.823e-6" iyy="317.524e-6" izz="266.663e-6" ixy="-1.265e-6" ixz="4.25e-6"  iyz="2.029e-6" />
       </inertial>      
-    </link>  
+    </link> 
+    <gazebo reference="Left_Hip">
+      <material>Gazebo/Grey</material>
+    </gazebo>      
 </robot>
