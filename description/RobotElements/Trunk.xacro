@@ -13,7 +13,7 @@
 		  <!--Origin defines geometric center of spawnego object relative to child frame-->
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Trunk.stl"/>
+        <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Trunk.stl"/>
       </geometry>
       <material name="grey"/>
     </visual>
@@ -25,12 +25,12 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Trunk-Collision.stl"/>
+        <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Trunk-Collision.stl"/>
       </geometry>
     </collision>
   </link>
 
   <gazebo reference="Trunk">
-      <material>Gazebo/Black</material>
+      <material>Gazebo/Grey</material>
   </gazebo>
 </robot>

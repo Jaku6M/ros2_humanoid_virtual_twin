@@ -11,14 +11,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Left-Shank.stl"/>
+          <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Left-Shank.stl"/>
         </geometry>
         <material name="grey"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <mesh filename="package://ros2_humanoid_virtual_twin/STLe/Right-Shank-Collision.stl"/>
+            <mesh filename="file://$(find ros2_humanoid_virtual_twin)/STLe/Right-Shank-Collision.stl"/>
         </geometry>
       </collision>
       <inertial>
