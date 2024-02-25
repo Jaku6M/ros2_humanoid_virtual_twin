@@ -1,6 +1,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joint_state.hpp"
+#include "ros2_humanoid_virtual_twin/srv/Legmove.hpp"
 #include <cmath>
+#include <memory>
 
 class LegTrajectoryNode : public rclcpp::Node
 {
@@ -20,6 +22,13 @@ public:
 
         // Initialize member variables
         time_ = 0.0;
+    }
+    void freqchange(const std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Request> request,     // CHANGE
+          std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Response>       response)  // CHANGE
+    {
+        response->frequencygot = request->frequency;                                      // CHANGE
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nfrequency: %2.f" ,request->frequency);                                         // CHANGE
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%2.d]", (float_t)response->frequencygot);
     }
 
 private:
@@ -49,7 +58,7 @@ private:
         RCLCPP_INFO(get_logger(), "Publishing joint states");
     }
 
-    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_;
+    rclcpp::Publisher<sensor_msgs::msg::JointStatemoveleg>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
 
     // Member variables 
@@ -61,8 +70,14 @@ private:
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<LegTrajectoryNode>();
-    rclcpp::spin(node);
+    rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =
+    node_ptr->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("Legmove", &LegTrajectoryNode::freqchange);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to change frequency.");                     // CHANGE
+    
+    // Spin only the node associated with the service
+    rclcpp::spin(node_ptr->get_node_base_interface());
+    rclcpp::shutdown();
     rclcpp::shutdown();
     return 0;
 }

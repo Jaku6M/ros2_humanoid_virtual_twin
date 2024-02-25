@@ -1,3 +1,3 @@
 float64 frequency
 ---
-bool success
+float64 frequencygot
