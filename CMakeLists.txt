@@ -4,18 +4,15 @@ project(ros2_humanoid_virtual_twin)
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
-
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-find_package(sensor_msgs REQUIRED)#?????
-
+#find_package(sensor_msgs REQUIRED)
 #zadeklaruj liste wiadomosci ktora chcesz wygenerowac:
 set(srv_files
-  "srv/Legmove.srv"
+  "srv/AddThreeInts.srv"
 )
-
 #Wygeneruj wiadomosci:
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${srv_files}
@@ -23,22 +20,38 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 ament_export_dependencies(rosidl_default_runtime)
 
 #Tworzenie pliko wykonywalnych
-add_executable(move_leg config/move_leg.cpp)
-ament_target_dependencies(move_leg rclcpp sensor_msgs)#????
+#add_executable(move_leg config/move_leg.cpp)
+#ament_target_dependencies(move_leg rclcpp sensor_msgs)
 
-add_executable(client config/client.cpp)
+#STWORZENIE EXECUTABLE'A ZEBY DZIALAL TEN PLIK W SRC JAKO NAZWA server A NIE JAKIES DZIWNE
+add_executable(server config/add_two_ints_server.cpp)
+ament_target_dependencies(server rclcpp)
+
+#STWORZENIE EXECUTABLE'A ZEBY DZIALAL TEN PLIK W SRC JAKO NAZWA client A NIE JAKIES DZIWNE
+add_executable(client config/add_two_ints_client.cpp)
 ament_target_dependencies(client rclcpp)
 
+#add_executable(client config/client.cpp)
+#ament_target_dependencies(client rclcpp)
+
 install(TARGETS
-  move_leg
+  #move_leg
+  #client
+  server
   client
   DESTINATION lib/${PROJECT_NAME}
 )
 
 #Poniewaz masz w 1 paczce interfejsy to:
+#rosidl_get_typesupport_target(cpp_typesupport_target
+#  ${PROJECT_NAME} rosidl_typesupport_cpp)
+#target_link_libraries(move_leg "${cpp_typesupport_target}")
+#rosidl_get_typesupport_target(cpp_typesupport_target
+#  ${PROJECT_NAME} rosidl_typesupport_cpp)
+#target_link_libraries(client "${cpp_typesupport_target}")
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
-target_link_libraries(move_leg "${cpp_typesupport_target}")
+target_link_libraries(server "${cpp_typesupport_target}")
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
 target_link_libraries(client "${cpp_typesupport_target}")
@@ -51,12 +64,12 @@ if(BUILD_TESTING)
   # the following line skips cpplint (only works in a git repo)
   # comment the line when this package is in a git repo and when
   # a copyright and license is added to all source files
-  #set(ament_cmake_cpplint_FOUND TRUE)
+  set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
 
 install(
-  DIRECTORY config description launch worlds STLe
+  DIRECTORY config description launch STLe
   DESTINATION share/${PROJECT_NAME}
 )
 
