@@ -11,7 +11,7 @@ find_package(rosidl_default_generators REQUIRED)
 #find_package(sensor_msgs REQUIRED)
 #zadeklaruj liste wiadomosci ktora chcesz wygenerowac:
 set(srv_files
-  "srv/AddThreeInts.srv"
+  "srv/Legmove.srv"
 )
 #Wygeneruj wiadomosci:
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -22,6 +22,8 @@ ament_export_dependencies(rosidl_default_runtime)
 #Tworzenie pliko wykonywalnych
 #add_executable(move_leg config/move_leg.cpp)
 #ament_target_dependencies(move_leg rclcpp sensor_msgs)
+#add_executable(client config/client.cpp)
+#ament_target_dependencies(client rclcpp)
 
 #STWORZENIE EXECUTABLE'A ZEBY DZIALAL TEN PLIK W SRC JAKO NAZWA server A NIE JAKIES DZIWNE
 add_executable(server config/add_two_ints_server.cpp)
@@ -30,9 +32,6 @@ ament_target_dependencies(server rclcpp)
 #STWORZENIE EXECUTABLE'A ZEBY DZIALAL TEN PLIK W SRC JAKO NAZWA client A NIE JAKIES DZIWNE
 add_executable(client config/add_two_ints_client.cpp)
 ament_target_dependencies(client rclcpp)
-
-#add_executable(client config/client.cpp)
-#ament_target_dependencies(client rclcpp)
 
 install(TARGETS
   #move_leg

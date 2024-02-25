@@ -1,5 +1,5 @@
 #include "rclcpp/rclcpp.hpp"
-#include "ros2_humanoid_virtual_twin/srv/add_three_ints.hpp"                                       // CHANGE
+#include "ros2_humanoid_virtual_twin/srv/legmove.hpp"                                       
 
 #include <chrono>
 #include <cstdlib>
@@ -11,19 +11,17 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  if (argc != 4) { // CHANGE
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: add_three_ints_client X Y Z");      // CHANGE
+  if (argc != 2) { //argc != 2 oznacza, że program oczekuje, aby został podany dokładnie 1 argument (oprócz nazwy programu).
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: set frequency");      
       return 1;
   }
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_three_ints_client");  // CHANGE
-  rclcpp::Client<ros2_humanoid_virtual_twin::srv::AddThreeInts>::SharedPtr client =                // CHANGE
-    node->create_client<ros2_humanoid_virtual_twin::srv::AddThreeInts>("add_three_ints");          // CHANGE
+  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("legmove_client");  
+  rclcpp::Client<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr client =                
+    node->create_client<ros2_humanoid_virtual_twin::srv::Legmove>("legmove");          
 
-  auto request = std::make_shared<ros2_humanoid_virtual_twin::srv::AddThreeInts::Request>();       // CHANGE
-  request->a = atoll(argv[1]);
-  request->b = atoll(argv[2]);
-  request->c = atoll(argv[3]);                                                              // CHANGE
+  auto request = std::make_shared<ros2_humanoid_virtual_twin::srv::Legmove::Request>();       
+  request->frequency = std::stod(argv[1]);                                                             
 
   while (!client->wait_for_service(1s)) {
     if (!rclcpp::ok()) {
@@ -38,9 +36,9 @@ int main(int argc, char **argv)
   if (rclcpp::spin_until_future_complete(node, result) ==
     rclcpp::FutureReturnCode::SUCCESS)
   {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sum: %ld", result.get()->sum);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Frequency got: %f", result.get()->frequencygot);
   } else {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_three_ints");    // CHANGE
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service moveleg");    
   }
 
   rclcpp::shutdown();

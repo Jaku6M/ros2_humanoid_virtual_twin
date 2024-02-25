@@ -1,27 +1,26 @@
 #include "rclcpp/rclcpp.hpp"
-#include "ros2_humanoid_virtual_twin/srv/add_three_ints.hpp"                                        // CHANGE
+#include "ros2_humanoid_virtual_twin/srv/legmove.hpp"                                        
 
 #include <memory>
 
-void add(const std::shared_ptr<ros2_humanoid_virtual_twin::srv::AddThreeInts::Request> request,     // CHANGE
-          std::shared_ptr<ros2_humanoid_virtual_twin::srv::AddThreeInts::Response>       response)  // CHANGE
+void add(const std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Request> request,     
+          std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Response>       response)  
 {
-  response->sum = request->a + request->b + request->c;                                      // CHANGE
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\na: %ld" " b: %ld" " c: %ld",  // CHANGE
-                request->a, request->b, request->c);                                         // CHANGE
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%ld]", (long int)response->sum);
+  response->frequencygot = request->frequency;                                      
+  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\na: %f" , request->frequency);                                         
+  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%f]", (float)response->frequencygot);
 }
 
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_three_ints_server");   // CHANGE
+  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("legmove_server");   
 
-  rclcpp::Service<ros2_humanoid_virtual_twin::srv::AddThreeInts>::SharedPtr service =               // CHANGE
-    node->create_service<ros2_humanoid_virtual_twin::srv::AddThreeInts>("add_three_ints",  &add);   // CHANGE
+  rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =               
+    node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("legmove",  &add);   
 
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to add three ints.");                     // CHANGE
+  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to set frequency.");                     
 
   rclcpp::spin(node);
   rclcpp::shutdown();
