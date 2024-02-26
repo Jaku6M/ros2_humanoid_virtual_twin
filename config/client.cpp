@@ -1,5 +1,5 @@
 #include "rclcpp/rclcpp.hpp"
-#include "ros2_humanoid_virtual_twin/srv/legmove.hpp"                                       // CHANGE
+#include "ros2_humanoid_virtual_twin/srv/legmove.hpp"                                       
 
 #include <chrono>
 #include <cstdlib>
@@ -11,17 +11,17 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  if (argc != 4) { // CHANGE
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Set frequency of robot movement");      // CHANGE
+  if (argc != 2) { //argc != 2 oznacza, że program oczekuje, aby został podany dokładnie 1 argument (oprócz nazwy programu).
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "usage: set frequency");      
       return 1;
   }
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("client");  // CHANGE
-  rclcpp::Client<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr client =                // CHANGE
-    node->create_client<ros2_humanoid_virtual_twin::srv::Legmove>("Legmove");          // CHANGE
+  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("legmove_client");  
+  rclcpp::Client<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr client =                
+    node->create_client<ros2_humanoid_virtual_twin::srv::Legmove>("legmove");          
 
-  auto request = std::make_shared<ros2_humanoid_virtual_twin::srv::Legmove::Request>();       // CHANGE
-  request->frequency = atoll(argv[1]);
+  auto request = std::make_shared<ros2_humanoid_virtual_twin::srv::Legmove::Request>();       
+  request->frequency = std::stod(argv[1]);                                                             
 
   while (!client->wait_for_service(1s)) {
     if (!rclcpp::ok()) {
@@ -36,9 +36,9 @@ int main(int argc, char **argv)
   if (rclcpp::spin_until_future_complete(node, result) ==
     rclcpp::FutureReturnCode::SUCCESS)
   {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Set frequency: %2.f", result.get()->frequencygot);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Frequency got: %f", result.get()->frequencygot);
   } else {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service Legmove");    // CHANGE
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service moveleg");    
   }
 
   rclcpp::shutdown();

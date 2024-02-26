@@ -8,7 +8,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-#find_package(sensor_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 #zadeklaruj liste wiadomosci ktora chcesz wygenerowac:
 set(srv_files
   "srv/Legmove.srv"
@@ -19,38 +19,22 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 )
 ament_export_dependencies(rosidl_default_runtime)
 
-#Tworzenie pliko wykonywalnych
-#add_executable(move_leg config/move_leg.cpp)
-#ament_target_dependencies(move_leg rclcpp sensor_msgs)
-#add_executable(client config/client.cpp)
-#ament_target_dependencies(client rclcpp)
-
-#STWORZENIE EXECUTABLE'A ZEBY DZIALAL TEN PLIK W SRC JAKO NAZWA server A NIE JAKIES DZIWNE
-add_executable(server config/add_two_ints_server.cpp)
-ament_target_dependencies(server rclcpp)
-
-#STWORZENIE EXECUTABLE'A ZEBY DZIALAL TEN PLIK W SRC JAKO NAZWA client A NIE JAKIES DZIWNE
-add_executable(client config/add_two_ints_client.cpp)
+#Tworzenie plikow wykonywalnych
+add_executable(move_leg config/move_leg.cpp)
+ament_target_dependencies(move_leg rclcpp sensor_msgs)
+add_executable(client config/client.cpp)
 ament_target_dependencies(client rclcpp)
 
 install(TARGETS
-  #move_leg
-  #client
-  server
+  move_leg
   client
   DESTINATION lib/${PROJECT_NAME}
 )
 
 #Poniewaz masz w 1 paczce interfejsy to:
-#rosidl_get_typesupport_target(cpp_typesupport_target
-#  ${PROJECT_NAME} rosidl_typesupport_cpp)
-#target_link_libraries(move_leg "${cpp_typesupport_target}")
-#rosidl_get_typesupport_target(cpp_typesupport_target
-#  ${PROJECT_NAME} rosidl_typesupport_cpp)
-#target_link_libraries(client "${cpp_typesupport_target}")
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
-target_link_libraries(server "${cpp_typesupport_target}")
+target_link_libraries(move_leg "${cpp_typesupport_target}")
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
 target_link_libraries(client "${cpp_typesupport_target}")

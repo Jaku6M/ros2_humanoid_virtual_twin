@@ -23,14 +23,6 @@ public:
         // Initialize member variables
         time_ = 0.0;
     }
-    void freqchange(const std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Request> request,     // CHANGE
-          std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Response>       response)  // CHANGE
-    {
-        response->frequencygot = request->frequency;                                      // CHANGE
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nfrequency: %2.f" ,request->frequency);                                         // CHANGE
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%2.d]", (float_t)response->frequencygot);
-    }
-
 private:
     void publish_joint_states()
     {
@@ -67,18 +59,30 @@ private:
     double amplitude_;
 };
 
+void freqchange(const std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Request> request,     
+        std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Response>       response)  
+{
+    response->frequencygot = request->frequency;                                      
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nfrequency: %f" ,request->frequency);                                         
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%f]", (float)response->frequencygot);
+}
+
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<LegTrajectoryNode>();
+    auto node = std::make_shared<LegTrajectoryNode>();//node for moving leg
+    std::shared_ptr<rclcpp::Node> freqnode = rclcpp::Node::make_shared("legmove_server");//node for setting frequency  
+
     rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =
     node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("Legmove", &LegTrajectoryNode::freqchange);
+    rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =               
+    node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("legmove",  &freqchange);   
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to change frequency.");                     // CHANGE
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to change frequency.");                     
     
     // Spin only the node associated with the service
-    rclcpp::spin(node_ptr->get_node_base_interface());
-    rclcpp::shutdown();
+    rclcpp::spin(freqnode);
+    rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;
 }
