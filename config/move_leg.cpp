@@ -23,6 +23,12 @@ public:
         // Initialize member variables
         time_ = 0.0;
     }
+    // Setter function for setting the frequency from the outside
+    void setFrequency(double frequency)
+    {
+        frequency_ = frequency;
+        RCLCPP_INFO(get_logger(), "Setting frequency to: %f", frequency_);
+    }    
 private:
     void publish_joint_states()
     {
@@ -60,21 +66,27 @@ private:
 };
 
 void freqchange(const std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Request> request,     
-        std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Response>       response)  
+        std::shared_ptr<ros2_humanoid_virtual_twin::srv::Legmove::Response>       response,
+        std::shared_ptr<LegTrajectoryNode> leg_node) // Pass the LegTrajectoryNode pointer
 {
     response->frequencygot = request->frequency;                                      
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\nfrequency: %f" ,request->frequency);                                         
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%f]", (float)response->frequencygot);
+    // Set the frequency in the LegTrajectoryNode:
+    leg_node->setFrequency(response->frequencygot);
 }
 
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<LegTrajectoryNode>();//node for moving leg
-    std::shared_ptr<rclcpp::Node> freqnode = rclcpp::Node::make_shared("legmove_server");//node for setting frequency  
+    // Create a shared pointer to the LegTrajectoryNode
+    auto leg_node = std::make_shared<LegTrajectoryNode>();
 
-    rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =               
-    node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("legmove",  &freqchange);   
+    // Create subscriber service with a callback that has access to LegTrajectoryNode
+    rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =
+        node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>(
+            "legmove", std::bind(&freqchange, std::placeholders::_1, std::placeholders::_2, node));
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to change frequency.");                     
     
