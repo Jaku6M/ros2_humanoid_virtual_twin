@@ -73,15 +73,12 @@ int main(int argc, char *argv[])
     auto node = std::make_shared<LegTrajectoryNode>();//node for moving leg
     std::shared_ptr<rclcpp::Node> freqnode = rclcpp::Node::make_shared("legmove_server");//node for setting frequency  
 
-    rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =
-    node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("Legmove", &LegTrajectoryNode::freqchange);
     rclcpp::Service<ros2_humanoid_virtual_twin::srv::Legmove>::SharedPtr service =               
     node->create_service<ros2_humanoid_virtual_twin::srv::Legmove>("legmove",  &freqchange);   
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to change frequency.");                     
     
     // Spin only the node associated with the service
-    rclcpp::spin(freqnode);
     rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;
