@@ -9,15 +9,16 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(swing_action REQUIRED)
+find_package(swing_action REQUIRED)#name of action package
 find_package(rclcpp_action REQUIRED)
 find_package(rclcpp_components REQUIRED)
-add_library(action_server SHARED config/swing_server.cpp)
+add_library(action_server SHARED config/swing_server.cpp)#your servers code name and directory
 target_include_directories(action_server PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 target_compile_definitions(action_server
   PRIVATE "ROS2_HUMANOID_VIRTUAL_TWIN_BUILDING_DLL")
+           #NAME_OF_PACKAGE_BUILDING_DLL
 #zadeklaruj liste wiadomosci ktora chcesz wygenerowac:
 set(srv_files
   "srv/Legmove.srv"
@@ -38,8 +39,8 @@ install(TARGETS
   client
   DESTINATION lib/${PROJECT_NAME}
 )
-
-ament_target_dependencies(action_server sensor_msgs
+                        #action_server is name of executable and sensor_msgs is a dependency needed to publish joint messages
+ament_target_dependencies(action_server sensor_msgs 
   "swing_action"
   "rclcpp"
   "rclcpp_action"
@@ -70,6 +71,11 @@ install(TARGETS
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin)
 
+install(
+  DIRECTORY config description launch STLe
+  DESTINATION share/${PROJECT_NAME}
+)
+
 #Poniewaz masz w 1 paczce interfejsy to:
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
@@ -89,10 +95,5 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-install(
-  DIRECTORY config description launch STLe
-  DESTINATION share/${PROJECT_NAME}
-)
 
 ament_package()
