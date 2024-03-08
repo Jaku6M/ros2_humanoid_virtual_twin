@@ -7,14 +7,23 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(sensor_msgs REQUIRED)
+find_package(robot_state_publisher REQUIRED)
+find_package(xacro REQUIRED)
+find_package(urdf REQUIRED)
+find_package(rviz2 REQUIRED)
+find_package(ros2_control REQUIRED)
+find_package(ros2_controllers REQUIRED)
+find_package(dynamixel_hardware REQUIRED)
 
-add_executable(move_leg config/move_leg.cpp)
-ament_target_dependencies(move_leg rclcpp sensor_msgs)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+install(DIRECTORY 
+  controllers
+  description 
+  launch 
+  worlds 
+  meshes
+  DESTINATION share/${PROJECT_NAME}
+)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -27,15 +36,5 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-install(
-  DIRECTORY config description launch worlds meshes
-  DESTINATION share/${PROJECT_NAME}
-)
-
-install(TARGETS
-  move_leg
-  DESTINATION lib/${PROJECT_NAME}
-)
 
 ament_package()
