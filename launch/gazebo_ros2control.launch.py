@@ -52,34 +52,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        Node(
-            package="controller_manager",
-            executable="ros2_control_node",
-            parameters=[
-                {"robot_description": robot_description_config.toxml()}, controller_config],
-            output="screen",
-        ),
-
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
-            output="screen",
-        ),
-
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["velocity_controller", "-c", "/controller_manager"],
-            output="screen",
-        ),
-
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
-            output="screen",
-        ),
 
         Node(
             package="robot_state_publisher",
@@ -87,8 +59,36 @@ def generate_launch_description():
             name="robot_state_publisher",
             parameters=[
                 {"robot_description": robot_description_config.toxml()}],
-            output="screen"),
+            output="both"),
+            
+        Node(
+            package="controller_manager",
+            executable="ros2_control_node",
+            parameters=[
+                {"robot_description": robot_description_config.toxml()}, controller_config],
+            output="both",
+        ),
 
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+            output="both",
+        ),
+
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["velocity_controller", "-c", "/controller_manager"],
+            output="both",
+        ),
+
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
+            output="both",
+        ),
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(

@@ -31,5 +31,11 @@
   </link>
   <gazebo reference="Trunk">
       <material>Gazebo/Grey</material>
+      <must_be_base_link>true</must_be_base_link>
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <selfCollide>true</selfCollide>
   </gazebo>
 </robot>

@@ -30,5 +30,12 @@
     </link>	
     <gazebo reference="Left_Foot">
       <material>Gazebo/Grey</material>
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <selfCollide>true</selfCollide>
+      <dampingFactor>15.0</dampingFactor>
+      <maxVel>0.5</maxVel>
     </gazebo>         
 </robot>

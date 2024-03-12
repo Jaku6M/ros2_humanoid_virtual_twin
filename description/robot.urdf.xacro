@@ -9,5 +9,5 @@
         <child link="base_link"/>
     </joint>
     <!-- Below is a file which contains parameters controlling movements of a robot -->    
-     <xacro:include filename="$(find ros2_humanoid_virtual_twin)/description/Melman_ros2control_gazebo.xacro" />
+    <xacro:include filename="$(find ros2_humanoid_virtual_twin)/description/Melman_ros2control_gazebo.xacro" />
 </robot>
