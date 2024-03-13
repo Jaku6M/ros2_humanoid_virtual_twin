@@ -35,6 +35,14 @@ velocity_controller:
       - Hz
       - Hy
 
+    command_interfaces:
+      - position
+      - velocity
+    
+    state_interfaces:
+      - position
+      - velocity
+
 joint_trajectory_controller:
   ros__parameters:
     joints:
