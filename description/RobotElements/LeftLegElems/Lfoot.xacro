@@ -19,7 +19,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-			<mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Foot-collision.stl"/>
+			    <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Foot-collision.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -30,12 +30,8 @@
     </link>	
     <gazebo reference="Left_Foot">
       <material>Gazebo/Grey</material>
-      <mu1 value="200.0"/>
-      <mu2 value="100.0"/>
-      <kp value="10000000.0" />
-      <kd value="1.0" />
-      <selfCollide>true</selfCollide>
-      <dampingFactor>15.0</dampingFactor>
-      <maxVel>0.5</maxVel>
+      <mu1 value="0.002"/>
+      <mu2 value="0.003"/>
+      <kp value="100000.0"/> 
     </gazebo>         
 </robot>

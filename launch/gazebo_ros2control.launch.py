@@ -76,12 +76,12 @@ def generate_launch_description():
             output="both",
         ),
 
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["velocity_controller", "-c", "/controller_manager"],
-            output="both",
-        ),
+        # Node(
+        #     package="controller_manager",
+        #     executable="spawner",
+        #     arguments=["velocity_controller", "-c", "/controller_manager"],
+        #     output="both",
+        # ),
 
         Node(
             package="controller_manager",

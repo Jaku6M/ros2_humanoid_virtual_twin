@@ -11,14 +11,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Arm.stl" scale="0.001 0.001 0.001"/>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Arm.stl" scale="0.001 0.001 0.001"/>
             </geometry>
             <material name="grey"/>
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Left-Arm-Collision.stl"/>
+                <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right-Arm_Collision.stl" scale="0.001 0.001 0.001"/>
             </geometry>
         </collision>
         <inertial>

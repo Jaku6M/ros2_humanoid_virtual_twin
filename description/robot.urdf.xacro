@@ -3,11 +3,11 @@
     <!-- Below is a file which initiates geometry of robot and inertial, dynamic, collision parameters -->
     <xacro:include filename="robot_core.xacro" />
     <!-- If you want the Trunk to be immovable and static at a certain height uncomment lines below -->
-    <link name="world"/>
+    <!-- <link name="world"/>
     <joint name="world-base_link-fixed" type="fixed">
         <parent link="world"/>
         <child link="base_link"/>
-    </joint>
+    </joint> -->
     <!-- Below is a file which contains parameters controlling movements of a robot -->    
     <xacro:include filename="$(find ros2_humanoid_virtual_twin)/description/Melman_ros2control_gazebo.xacro" />
 </robot>
