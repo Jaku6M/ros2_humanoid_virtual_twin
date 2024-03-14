@@ -5,7 +5,7 @@
       <parent link="Left_Shank"/>
       <child link="Left_Ankle"/>
       <axis xyz="0 1.0 0"/>
-      <limit lower="${-pi/2}" upper="${pi/2}" effort="100" velocity="100"/>
+      <limit lower="${-pi/2}" upper="${pi/2}" effort="1" velocity="1"/>
     </joint>
 	<link name="Left_Ankle">
       <visual>
@@ -27,6 +27,13 @@
         <inertia ixx="135.823e-6" iyy="317.524e-6" izz="266.663e-6" ixy="-1.265e-6" ixz="4.25e-6"  iyz="2.029e-6" />
       </inertial>      
     </link> 
+    <gazebo reference="LFy">
+        <implicitSpringDamper>${Damper_val}</implicitSpringDamper>
+        <springStiffness>${springstiffness_val}</springStiffness>
+        <springReference>${springReference_val}</springReference>
+        <stopErp>${stopErp_val}</stopErp>
+        <stopCfm>${stopCfm_val}</stopCfm>
+    </gazebo>    
     <gazebo reference="Left_Ankle">
         <material>Gazebo/Grey</material>
         <mu1 value="${mu1_val}"/>
@@ -34,6 +41,7 @@
         <kp value="${kp_val}" />
         <kd value="${kd_val}" />
         <maxVel value="${maxVel_val}"/>
+        <dampingFactor value="${dampigFactor_val}"/>
         <selfCollide>${selfCollide_val}</selfCollide>  
     </gazebo> 
 </robot>

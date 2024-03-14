@@ -26,6 +26,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Trunk-Collision.stl" scale="0.001 0.001 0.001"/>
+        <!-- <box size="0.14 0.1 0.1"/> -->
       </geometry>
     </collision>
   </link>
@@ -36,6 +37,7 @@
         <kp value="${kp_val}" />
         <kd value="${kd_val}" />
         <maxVel value="${maxVel_val}"/>
+        <dampingFactor value="${dampigFactor_val}"/>
         <selfCollide>${selfCollide_val}</selfCollide>  
   </gazebo>
 </robot>
