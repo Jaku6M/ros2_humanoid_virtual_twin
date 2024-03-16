@@ -28,10 +28,13 @@ import xacro
 
 
 def generate_launch_description():
+    world_file_name = 'withoutmelman.world'
+    world = os.path.join(get_package_share_directory('ros2_humanoid_virtual_twin'),
+                         'worlds', world_file_name)
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-                launch_arguments={'pause': 'true'}.items()
+                launch_arguments={'pause': 'true', 'world': world}.items()
              )
 
     package_name = os.path.join(
@@ -41,8 +44,8 @@ def generate_launch_description():
                               'description',
                               'robot.urdf.xacro')
     doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc)
-    params = {'robot_description': doc.toxml()}
+    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'false', 'use_URDF_joint_dynamics_coefficients': 'false'})
+    params = {'robot_description': doc.toxml(), 'use_sim_time': True}
 
     node_robot_state_publisher = Node(
         package='robot_state_publisher',

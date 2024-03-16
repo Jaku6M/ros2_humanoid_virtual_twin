@@ -10,4 +10,9 @@
     </joint> -->
     <!-- Below is a file which contains parameters controlling movements of a robot -->    
     <xacro:include filename="$(find ros2_humanoid_virtual_twin)/description/Melman_ros2control_gazebo.xacro" />
+    <!-- Xacro arguments deciding whether to use parameters listed below or not -->
+    <xacro:arg name="use_gazebo_link_physics_coefficients" default="true"/>
+    <xacro:arg name="use_gazebo_joint_physics_coefficients" default="true"/>
+    <xacro:arg name="use_URDF_joint_dynamics_coefficients" default="true"/>
+    <xacro:arg name="use_gazebo" default="true"/>      
 </robot>

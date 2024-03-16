@@ -5,7 +5,10 @@
         <parent link="Trunk"/>
         <child link="Head_Mounting"/>
         <axis xyz="0 0 1.0"/>
-        <limit lower="${-pi/2}" upper="${pi/2}" effort="1" velocity="1"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="${maxeffort_val}" velocity="${maxVel_val}"/>
+        <xacro:if value="$(arg use_URDF_joint_dynamics_coefficients)">
+            <dynamics damping="${damping_val}" friction="${friction_val}"/>
+        </xacro:if>
     </joint>
     <link name="Head_Mounting">
         <visual>
@@ -27,21 +30,25 @@
             <inertia ixx="4.859e-6" iyy="2.246e-6" izz="3.894e-6" ixy="0" ixz="0"  iyz="0.637e-6"/>
         </inertial>
     </link>
-    <gazebo reference="Hz">
-        <implicitSpringDamper>${Damper_val}</implicitSpringDamper>
-        <springStiffness>${springstiffness_val}</springStiffness>
-        <springReference>${springReference_val}</springReference>
-        <stopErp>${stopErp_val}</stopErp>
-        <stopCfm>${stopCfm_val}</stopCfm>
-    </gazebo>    
+    <xacro:if value="$(arg use_gazebo_joint_physics_coefficients)">
+        <gazebo reference="Hz">
+            <implicitSpringDamper>${Damper_val}</implicitSpringDamper>
+            <springStiffness>${springstiffness_val}</springStiffness>
+            <springReference>${springReference_val}</springReference>
+            <stopErp>${stopErp_val}</stopErp>
+            <stopCfm>${stopCfm_val}</stopCfm>
+        </gazebo>   
+    </xacro:if> 
     <gazebo reference="Head_Mounting">
         <material>Gazebo/Grey</material>
-        <mu1 value="${mu1_val}"/>
-        <mu2 value="${mu2_val}"/>
-        <kp value="${kp_val}" />
-        <kd value="${kd_val}" />
-        <maxVel value="${maxVel_val}"/>
-        <dampingFactor value="${dampigFactor_val}"/>
-        <selfCollide>${selfCollide_val}</selfCollide>  
+        <xacro:if value="$(arg use_gazebo_link_physics_coefficients)">
+          <mu1 value="${mu1_val}"/>
+          <mu2 value="${mu2_val}"/>
+          <kp value="${kp_val}" />
+          <kd value="${kd_val}" />
+          <maxVel value="${maxVel_val}"/>
+          <dampingFactor value="${dampigFactor_val}"/>
+          <selfCollide>${selfCollide_val}</selfCollide>  
+        </xacro:if>
     </gazebo>
 </robot>
