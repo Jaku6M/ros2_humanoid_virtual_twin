@@ -61,13 +61,13 @@ def generate_launch_description():
                 {"robot_description": robot_description_config.toxml()}],
             output="both"),
             
-        Node(
-            package="controller_manager",
-            executable="ros2_control_node",
-            parameters=[
-                {"robot_description": robot_description_config.toxml()}, controller_config],
-            output="both",
-        ),
+        # Node(
+        #     package="controller_manager",
+        #     executable="ros2_control_node",
+        #     parameters=[
+        #         {"robot_description": robot_description_config.toxml()}, controller_config],
+        #     output="both",
+        # ),
 
         Node(
             package="controller_manager",
@@ -75,12 +75,12 @@ def generate_launch_description():
             arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
             output="both",
         ),
-        # Node(
-        #     package="controller_manager",
-        #     executable="spawner",
-        #     arguments=["velocity_controller", "-c", "/controller_manager"],
-        #     output="both",
-        # ),
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["velocity_controller", "-c", "/controller_manager"],
+            output="both",
+        ),
 
         Node(
             package="controller_manager",
@@ -92,7 +92,8 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(
                 get_package_share_directory("gazebo_ros"), "launch"), "/gazebo.launch.py"]),
+                launch_arguments={'pause': 'true'}.items()
         ),
 
-        spawn_entity,
+        spawn_entity
     ])

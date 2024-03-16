@@ -3,6 +3,7 @@
     <ros2_control name="Melman_ros2control_gazebo" type="system">
         <hardware>
             <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+            <!-- <plugin>dynamixel_hardware/DynamixelHardware</plugin> -->
         </hardware>
         <!-- Right Thigh Z axis rotation control -->
         <joint name="RTz">
@@ -272,7 +273,11 @@
 
     <gazebo>
       <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+            <robot_param>robot_description</robot_param>
+            <robot_param_node>robot_state_publisher</robot_param_node>
             <parameters>$(find ros2_humanoid_virtual_twin)/controllers/controllers.yaml</parameters>
+            <hold_joints>true</hold_joints>
+            <controller_manager_name>controller_manager</controller_manager_name>
       </plugin>
     </gazebo>
 </robot>
