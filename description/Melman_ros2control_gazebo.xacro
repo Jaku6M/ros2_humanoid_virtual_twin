@@ -276,7 +276,7 @@
             <robot_param>robot_description</robot_param>
             <robot_param_node>robot_state_publisher</robot_param_node>
             <parameters>$(find ros2_humanoid_virtual_twin)/controllers/controllers.yaml</parameters>
-            <hold_joints>true</hold_joints>
+            <hold_joints>false</hold_joints>
             <controller_manager_name>controller_manager</controller_manager_name>
       </plugin>
     </gazebo>
