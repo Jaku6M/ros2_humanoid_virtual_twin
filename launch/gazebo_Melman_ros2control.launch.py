@@ -28,13 +28,17 @@ import xacro
 
 
 def generate_launch_description():
+    #Below I tell gazebo what is his world to exist in
     world_file_name = 'withoutmelman.world'
     world = os.path.join(get_package_share_directory('ros2_humanoid_virtual_twin'),
                          'worlds', world_file_name)
+    # Here I tell gazebo to launch with the specified world file
+    gazebo_params_path = os.path.join(
+                  get_package_share_directory('ros2_humanoid_virtual_twin'),'controllers','gazebo_params.yaml')
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-                launch_arguments={'pause': 'true', 'world': world}.items()
+                launch_arguments={'pause': 'true', 'extra_gazebo_args': '--ros-args --params-file ' + gazebo_params_path}.items()
              )
 
     package_name = os.path.join(
@@ -75,23 +79,29 @@ def generate_launch_description():
         output='screen'
     )    
 
+    load_effort = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'effort_controller'],
+        output='screen'
+    )    
+
     return LaunchDescription([
+        # RegisterEventHandler(
+        #     event_handler=OnProcessExit(
+        #         target_action=spawn_entity,
+        #         on_exit=[load_joint_state_broadcaster],
+        #     )
+        # ),
+        # RegisterEventHandler(
+        #     event_handler=OnProcessExit(
+        #         target_action=load_joint_state_broadcaster,
+        #         on_exit=[load_joint_trajectory_controller],
+        #     )
+        # ),
+        
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
-                on_exit=[load_joint_state_broadcaster],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_state_broadcaster,
-                on_exit=[load_joint_trajectory_controller],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_trajectory_controller,
-                on_exit=[load_velocity_controller],
+                on_exit=[load_effort],
             )
         ),
 
