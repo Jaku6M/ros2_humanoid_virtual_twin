@@ -2,119 +2,94 @@ controller_manager:
   ros__parameters:
     update_rate: 1000  # Hz
     use_sim_time: true
-
-    effort_controller:
-      type: effort_controllers/JointGroupEffortController
-
-    # velocity_controller:
-    #   type: velocity_controllers/JointGroupVelocityController
+    velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
     
-    # joint_trajectory_controller:
-    #   type: joint_trajectory_controller/JointTrajectoryController
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-effort_controller:
+velocity_controller:
   ros__parameters:
     joints:
-      # - RTz
-      # - RTx
-      # - RTy
-      # - RSy
-      # - RFy
-      # - RFx
-      # - LTz
+      - RTz
+      - RTx
+      - RTy
+      - RSy
+      - RFy
+      - RFx
+      - LTz
       - LTx
       - LTy
       - LSy
       - LFy
       - LFx
-      # - RAy
-      # - RAx
-      # - RFAy
-      # - LAy
-      # - LAx
-      # - LFAy
-      # - Hz
-      # - Hy
+      - RAy
+      - RAx
+      - RFAy
+      - LAy
+      - LAx
+      - LFAy
+      - Hz
+      - Hy
 
-# velocity_controller:
-#   ros__parameters:
-#     joints:
-#       # - RTz
-#       # - RTx
-#       # - RTy
-#       # - RSy
-#       # - RFy
-#       # - RFx
-#       # - LTz
-#       - LTx
-#       - LTy
-#       - LSy
-#       - LFy
-#       - LFx
-#       # - RAy
-#       # - RAx
-#       # - RFAy
-#       # - LAy
-#       # - LAx
-#       # - LFAy
-#       # - Hz
-#       # - Hy
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - RTz
+      - RTx
+      - RTy
+      - RSy
+      - RFy
+      - RFx
+      - LTz
+      - LTx
+      - LTy
+      - LSy
+      - LFy
+      - LFx
+      - RAy
+      - RAx
+      - RFAy
+      - LAy
+      - LAx
+      - LFAy
+      - Hz
+      - Hy
+    command_joints:
+      - RTz
+      - RTx
+      - RTy
+      - RSy
+      - RFy
+      - RFx
+      - LTz
+      - LTx
+      - LTy
+      - LSy
+      - LFy
+      - LFx
+      - RAy
+      - RAx
+      - RFAy
+      - LAy
+      - LAx
+      - LFAy
+      - Hz
+      - Hy
 
-# joint_trajectory_controller:
-#   ros__parameters:
-#     joints:
-#       # - RTz
-#       # - RTx
-#       # - RTy
-#       # - RSy
-#       # - RFy
-#       # - RFx
-#       # - LTz
-#       - LTx
-#       - LTy
-#       - LSy
-#       - LFy
-#       - LFx
-#       # - RAy
-#       # - RAx
-#       # - RFAy
-#       # - LAy
-#       # - LAx
-#       # - LFAy
-#       # - Hz
-#       # - Hy
-#     command_joints:
-#       # - RTz
-#       # - RTx
-#       # - RTy
-#       # - RSy
-#       # - RFy
-#       # - RFx
-#       # - LTz
-#       - LTx
-#       - LTy
-#       - LSy
-#       - LFy
-#       - LFx
-#       # - RAy
-#       # - RAx
-#       # - RFAy
-#       # - LAy
-#       # - LAx
-#       # - LFAy
-#       # - Hz
-#       # - Hy
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    action_monitor_rate: 1000.0
+    state_publish_rate: 1000.0  # Hz
+    allow_nonzero_velocity_at_trajectory_end: false
 
-#     command_interfaces:
-#       - position
-#       - velocity
-#     state_interfaces:
-#       - position
-#       - velocity
-#     action_monitor_rate: 1000.0
-#     state_publish_rate: 1000.0  # Hz
-#     allow_nonzero_velocity_at_trajectory_end: false
+gazebo:
+  ros__parameters:
+    publish_rate: 1000  # Hz
 

@@ -5,6 +5,99 @@
             <plugin>gazebo_ros2_control/GazeboSystem</plugin>
             <!-- <plugin>dynamixel_hardware/DynamixelHardware</plugin> -->
         </hardware>
+        <!-- Right Thigh Z axis rotation control -->
+        <joint name="RTz">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Right Thigh X axis rotation control-->
+        <joint name="RTx">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Right Thigh Y axis rotation control-->
+        <joint name="RTy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position">
+                <!-- <param name="initial_value">-0.1</param> -->
+            </state_interface>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Right shank Y axis rotation control-->
+        <joint name="RSy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!--Right foot Y axis rotation control -->
+        <joint name="RFy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Right foot X axis rotation control-->
+        <joint name="RFx">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Left thigh z axis rotation control-->
+        <joint name="LTz">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
         <!--Left thigh x axis rotation control -->
         <joint name="LTx">
             <command_interface name="position">
@@ -15,10 +108,8 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
-            <state_interface name="effort"/>
         </joint>
         <!-- Left thigh y axis rotation control-->
         <joint name="LTy">
@@ -30,10 +121,8 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>
             <state_interface name="position">
-                <!-- <param name="initial_valu
-                <state_interface name="effort"/>e">-0.1</param> -->
+                <!-- <param name="initial_value">-0.1</param> -->
             </state_interface>
             <state_interface name="velocity"/>
         </joint>
@@ -47,10 +136,8 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
-            <state_interface name="effort"/>
         </joint>
         <!-- Left foot y axis rotation control-->
         <joint name="LFy">
@@ -62,10 +149,8 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
-            <state_interface name="effort"/>
         </joint>
         <!--Left foot x axis rotation control -->
         <joint name="LFx">
@@ -77,10 +162,112 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
-            <state_interface name="effort"/>
+        </joint>
+        <!-- Right arm y axis rotation control -->
+        <joint name="RAy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Right arm x axis rotation control-->
+        <joint name="RAx">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Roght forearm y axis rotation control-->
+        <joint name="RFAy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!--Left arm y axis rotation control -->
+        <joint name="LAy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+              <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Left arm x axis rotation control -->
+        <joint name="LAx">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Left forearm y axis rotation control -->
+        <joint name="LFAy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Head z axis rotation control-->
+        <joint name="Hz">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <!-- Head y axis rotation control-->
+        <joint name="Hy">
+            <command_interface name="position">
+                <param name="min">${-pi/2}</param>
+                <param name="max">${pi/2}</param>
+            </command_interface>
+            <command_interface name="velocity">
+                <param name="min">-5.0</param>
+                <param name="max">5.0</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
     </ros2_control>
 
@@ -89,7 +276,7 @@
             <robot_param>robot_description</robot_param>
             <robot_param_node>robot_state_publisher</robot_param_node>
             <parameters>$(find ros2_humanoid_virtual_twin)/controllers/controllers.yaml</parameters>
-            <hold_joints>true</hold_joints>
+            <hold_joints>false</hold_joints>
             <controller_manager_name>controller_manager</controller_manager_name>
       </plugin>
     </gazebo>

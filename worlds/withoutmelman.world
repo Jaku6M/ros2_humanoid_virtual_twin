@@ -31,8 +31,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>300</mu>
-                <mu2>300</mu2>
+                <mu>100</mu>
+                <mu2>50</mu2>
               </ode>
               <torsional>
                 <ode/>
@@ -40,7 +40,6 @@
             </friction>
             <contact>
               <ode/>
-                <max_vel>0.001</max_vel>
             </contact>
             <bounce/>
           </surface>
@@ -61,11 +60,7 @@
             </script>
           </material>
         </visual>
-        <velocity_decay>
-          <linear>0.5</linear>
-          <angular>0.5</angular>
-        </velocity_decay>
-        <self_collide>1</self_collide>
+        <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
