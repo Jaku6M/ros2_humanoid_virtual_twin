@@ -2,11 +2,19 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <ros2_control name="Melman_ros2control_gazebo" type="system">
         <hardware>
-            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-            <!-- <plugin>dynamixel_hardware/DynamixelHardware</plugin> -->
+            <xacro:if value="$(arg use_gazebo)">
+                <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+            </xacro:if>
+            <xacro:unless value="$(arg use_gazebo)">
+                <plugin>dynamixel_hardware/DynamixelHardware</plugin>
+                <param name="usb_port">/dev/ttyUSB0</param>
+                <param name="baud_rate">57600</param>
+                <param name="use_dummy">true</param>
+            </xacro:unless>
         </hardware>
         <!-- Right Thigh Z axis rotation control -->
         <joint name="RTz">
+            <param name="id">1</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -17,9 +25,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Right Thigh X axis rotation control-->
         <joint name="RTx">
+            <param name="id">2</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -30,9 +40,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Right Thigh Y axis rotation control-->
         <joint name="RTy">
+            <param name="id">3</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -45,9 +57,11 @@
                 <!-- <param name="initial_value">-0.1</param> -->
             </state_interface>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Right shank Y axis rotation control-->
         <joint name="RSy">
+            <param name="id">4</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -58,9 +72,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!--Right foot Y axis rotation control -->
         <joint name="RFy">
+            <param name="id">5</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -71,9 +87,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Right foot X axis rotation control-->
         <joint name="RFx">
+            <param name="id">6</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -84,9 +102,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Left thigh z axis rotation control-->
         <joint name="LTz">
+            <param name="id">7</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -97,9 +117,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!--Left thigh x axis rotation control -->
         <joint name="LTx">
+            <param name="id">8</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -110,9 +132,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Left thigh y axis rotation control-->
         <joint name="LTy">
+            <param name="id">9</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -125,9 +149,11 @@
                 <!-- <param name="initial_value">-0.1</param> -->
             </state_interface>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Left shank y axis rotation control-->
         <joint name="LSy">
+            <param name="id">10</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -138,9 +164,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Left foot y axis rotation control-->
         <joint name="LFy">
+            <param name="id">11</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -151,9 +179,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!--Left foot x axis rotation control -->
         <joint name="LFx">
+            <param name="id">12</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -164,9 +194,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Right arm y axis rotation control -->
         <joint name="RAy">
+            <param name="id">13</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -177,9 +209,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Right arm x axis rotation control-->
         <joint name="RAx">
+            <param name="id">14</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -190,9 +224,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Roght forearm y axis rotation control-->
         <joint name="RFAy">
+            <param name="id">15</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -203,9 +239,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!--Left arm y axis rotation control -->
         <joint name="LAy">
+            <param name="id">16</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -216,9 +254,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Left arm x axis rotation control -->
         <joint name="LAx">
+            <param name="id">17</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -229,9 +269,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Left forearm y axis rotation control -->
         <joint name="LFAy">
+            <param name="id">18</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -242,9 +284,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Head z axis rotation control-->
         <joint name="Hz">
+            <param name="id">19</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -255,9 +299,11 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
         <!-- Head y axis rotation control-->
         <joint name="Hy">
+            <param name="id">20</param>
             <command_interface name="position">
                 <param name="min">${-pi/2}</param>
                 <param name="max">${pi/2}</param>
@@ -268,16 +314,19 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
+            <state_interface name="effort"/>
         </joint>
     </ros2_control>
 
+    <xacro:if value="$(arg use_gazebo)">
     <gazebo>
       <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
             <robot_param>robot_description</robot_param>
             <robot_param_node>robot_state_publisher</robot_param_node>
             <parameters>$(find ros2_humanoid_virtual_twin)/controllers/controllers.yaml</parameters>
-            <hold_joints>false</hold_joints>
+            <hold_joints>true</hold_joints>
             <controller_manager_name>controller_manager</controller_manager_name>
       </plugin>
     </gazebo>
+    </xacro:if>
 </robot>

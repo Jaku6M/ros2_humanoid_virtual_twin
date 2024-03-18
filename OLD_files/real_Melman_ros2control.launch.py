@@ -28,14 +28,6 @@ import xacro
 
 
 def generate_launch_description():
-    world_file_name = 'withoutmelman.world'
-    world = os.path.join(get_package_share_directory('ros2_humanoid_virtual_twin'),
-                         'worlds', world_file_name)
-    gazebo = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-                launch_arguments={'pause': 'true', 'world': world}.items()
-             )
 
     package_name = os.path.join(
         get_package_share_directory('ros2_humanoid_virtual_twin'))
@@ -44,8 +36,19 @@ def generate_launch_description():
                               'description',
                               'robot.urdf.xacro')
     doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'false', 'use_URDF_joint_dynamics_coefficients': 'false', 'use_gazebo': 'true'})
-    params = {'robot_description': doc.toxml(), 'use_sim_time': True}
+    xacro.process_doc(doc, mappings={'use_gazebo_link_physics_coefficients': 'false', 'use_gazebo_joint_physics_coefficients': 'false', 'use_URDF_joint_dynamics_coefficients': 'false', 'use_gazebo': 'false'})
+    params = {'robot_description': doc.toxml()}
+
+    rviz_config = os.path.join(get_package_share_directory(
+        'ros2_humanoid_virtual_twin'), "launch", "melman.rviz")
+
+    rviz_node = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        arguments=["-d", rviz_config],
+        output="screen",
+    )
 
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -54,10 +57,18 @@ def generate_launch_description():
         parameters=[params]
     )
 
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'Melman'],
-                        output='screen')
+    controller_config = os.path.join(
+        get_package_share_directory(
+            'ros2_humanoid_virtual_twin'), "controllers", "controllers.yaml"
+    )
+
+    controller_manager_node = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[
+            {"robot_description": doc.toxml()}, controller_config],
+        output="screen",
+    )
 
     load_joint_state_broadcaster = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
@@ -76,9 +87,11 @@ def generate_launch_description():
     )    
 
     return LaunchDescription([
+        controller_manager_node,
+
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=spawn_entity,
+                target_action=controller_manager_node,
                 on_exit=[load_joint_state_broadcaster],
             )
         ),
@@ -95,7 +108,6 @@ def generate_launch_description():
             )
         ),
 
-        gazebo,
         node_robot_state_publisher,
-        spawn_entity,
+        rviz_node,
     ])
