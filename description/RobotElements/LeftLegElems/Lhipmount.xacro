@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <joint name="Trunk_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="Left_HipMount"/>
+      <!--Origin defines translation child frame relative to parent frame. Translation is performed in parent frame.-->
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+  </joint>
   <!-- LEFT HIP MOUNT-->
-  <joint name="LTz" type="revolute">
+  <!-- <joint name="LTz" type="revolute"> -->
     <!--Origin defines translation child frame relative to parent frame. Translation is performed in parent frame.-->
-    <origin xyz="0	40e-3	-150.065e-3" rpy="0 0 0"/>
+    <!-- <origin xyz="0	40e-3	-150.065e-3" rpy="0 0 0"/>
     <parent link="Trunk"/>
     <child link="Left_HipMount"/>
     <axis xyz="0 0 1.0"/>
@@ -11,7 +17,7 @@
     <xacro:if value="$(arg use_URDF_joint_dynamics_coefficients)">
         <dynamics damping="${damping_val}" friction="${friction_val}"/>
     </xacro:if>
-  </joint>  
+  </joint>   -->
   <link name="Left_HipMount">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
