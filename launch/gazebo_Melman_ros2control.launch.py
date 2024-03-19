@@ -101,13 +101,13 @@ def generate_launch_description():
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
-                on_exit=[load_effort],
+                on_exit=[load_joint_trajectory_controller],
             )
         ),
 
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=load_effort,
+                target_action=load_joint_trajectory_controller,
                 on_exit=[load_joint_state_broadcaster],
             )
         ),
