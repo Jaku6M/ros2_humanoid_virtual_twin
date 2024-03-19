@@ -17,8 +17,8 @@
   <!-- Definition of URDF physics coefficients for JOINTS -->
   <xacro:property name="damping_val" value="1.0"/>
   <xacro:property name="friction_val" value="1.0"/>
-  <xacro:property name="maxVel_val" value="0.0"/>
-  <xacro:property name="maxeffort_val" value="0.0"/>
+  <xacro:property name="maxVel_val" value="5.1"/>
+  <xacro:property name="maxeffort_val" value="5.1"/>
   <!-- Definition of grey material-->
   <material name="grey">
       <color rgba="0.6 0.6 0.6 1"/>

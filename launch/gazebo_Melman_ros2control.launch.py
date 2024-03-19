@@ -105,6 +105,13 @@ def generate_launch_description():
             )
         ),
 
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=load_effort,
+                on_exit=[load_joint_state_broadcaster],
+            )
+        ),
+
         gazebo,
         node_robot_state_publisher,
         spawn_entity,
