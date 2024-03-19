@@ -1,9 +1,9 @@
 controller_manager:
   ros__parameters:
     update_rate: 1000  # Hz
-    # use_sim_time: true
-    velocity_controller:
-      type: velocity_controllers/JointGroupVelocityController
+    use_sim_time: true
+    # velocity_controller:
+    #   type: velocity_controllers/JointGroupVelocityController
     
     joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
@@ -11,29 +11,29 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-velocity_controller:
-  ros__parameters:
-    joints:
-      - RTz
-      - RTx
-      - RTy
-      - RSy
-      - RFy
-      - RFx
-      - LTz
-      - LTx
-      - LTy
-      - LSy
-      - LFy
-      - LFx
-      - RAy
-      - RAx
-      - RFAy
-      - LAy
-      - LAx
-      - LFAy
-      - Hz
-      - Hy
+# velocity_controller:
+#   ros__parameters:
+#     joints:
+#       - RTz
+#       - RTx
+#       - RTy
+#       - RSy
+#       - RFy
+#       - RFx
+#       - LTz
+#       - LTx
+#       - LTy
+#       - LSy
+#       - LFy
+#       - LFx
+#       - RAy
+#       - RAx
+#       - RFAy
+#       - LAy
+#       - LAx
+#       - LFAy
+#       - Hz
+#       - Hy
 
 joint_trajectory_controller:
   ros__parameters:
@@ -81,15 +81,152 @@ joint_trajectory_controller:
       - Hy
 
     command_interfaces:
-      - position
+      - effort
     state_interfaces:
       - position
-
+      - velocity
     action_monitor_rate: 1000.0
     state_publish_rate: 1000.0  # Hz
     allow_nonzero_velocity_at_trajectory_end: false
-
-gazebo:
-  ros__parameters:
-    publish_rate: 1000  # Hz
+    gains:
+      RTz:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RTx:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RTy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RSy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RFy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RFx:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LTz:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LTx:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LTy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LSy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LFy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LFx:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RAy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RAx:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      RFAy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LAy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LAx:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      LFAy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      Hz:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
+      Hy:
+        angle_wraparound: false
+        d: 100.01
+        ff_velocity_scale: 100.0
+        i: 99999999999999999999999999999999999999999999999999999999999999999.0
+        i_clamp: 0.0
+        p: 9999.0
 
