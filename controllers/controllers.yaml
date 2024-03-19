@@ -120,37 +120,37 @@ joint_trajectory_controller:
       LTx:
         angle_wraparound: false
         d: 0.0
-        ff_velocity_scale: 100.0
-        i: 0.0
+        ff_velocity_scale: 1.0
+        i: 100.0
         i_clamp: 0.0
-        p: 10.0
+        p: 100.0
       LTy:
         angle_wraparound: false
         d: 0.0
-        ff_velocity_scale: 100.0
-        i: 0.0
+        ff_velocity_scale: 1.0
+        i: 100.0
         i_clamp: 0.0
-        p: 10.0
+        p: 100.0
       LSy:
         angle_wraparound: false
         d: 0.0
-        ff_velocity_scale: 100.0
-        i: 0.0
+        ff_velocity_scale: 1.0
+        i: 100.0
         i_clamp: 0.0
-        p: 10.0
+        p: 100.0
       LFy:
         angle_wraparound: false
         d: 0.0
-        ff_velocity_scale: 100.0
-        i: 0.0
+        ff_velocity_scale: 1.0
+        i: 100.0
         i_clamp: 0.0
-        p: 10.0
+        p: 100.0
       LFx:
         angle_wraparound: false
         d: 0.0
-        ff_velocity_scale: 100.0
-        i: 0.0
+        ff_velocity_scale: 1.0
+        i: 100.0
         i_clamp: 0.0
-        p: 10.0
+        p: 100.0
 
 
