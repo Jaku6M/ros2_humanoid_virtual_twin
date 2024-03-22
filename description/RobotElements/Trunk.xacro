@@ -23,10 +23,9 @@
       <inertia ixx="1992.6e-6" iyy="1287.385e-6" izz="1142.314e-6" ixy="0.546e-6" ixz="-217.49e-6"  iyz="1.946e-6" />
     </inertial>    
     <collision>
-      <origin xyz="0 0 -45e-3" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <!-- <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Trunk-Collision.stl" scale="0.001 0.001 0.001"/> -->
-        <box size="0.14 0.1 0.1"/>
+        <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Trunk_Collision.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
