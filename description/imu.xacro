@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <joint name="imu_sensor_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.0"/>
+        <parent link="Right_Arm"/>
+        <child link="imu"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+     
+    <link name="imu">
+        <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+        </inertial>
+    </link>
+    <gazebo reference="imu">
+        <sensor name="MPU6050sensor" type="imu">
+            <always_on>1</always_on>
+            <update_rate>10.0</update_rate>
+        </sensor>
+    </gazebo>
+</robot>

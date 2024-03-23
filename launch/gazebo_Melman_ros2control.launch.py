@@ -65,15 +65,15 @@ def generate_launch_description():
         output='screen'
     )
 
-    load_velocity_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'velocity_controller'],
-        output='screen'
-    )
-
     load_joint_trajectory_controller = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'joint_trajectory_controller'],
         output='screen'
     )    
+
+    load_imu_sensor_broadcaster = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', 'imu_sensor_broadcaster'],
+        output='screen'
+    )
 
     return LaunchDescription([
         RegisterEventHandler(
@@ -88,12 +88,13 @@ def generate_launch_description():
                 on_exit=[load_joint_state_broadcaster],
             )
         ),
-        # RegisterEventHandler(
-        #     event_handler=OnProcessExit(
-        #         target_action=load_joint_trajectory_controller,
-        #         on_exit=[load_velocity_controller],
-        #     )
-        # ),
+
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=load_joint_state_broadcaster,
+                on_exit=[load_imu_sensor_broadcaster],
+            )
+        ),
 
         gazebo,
         node_robot_state_publisher,
