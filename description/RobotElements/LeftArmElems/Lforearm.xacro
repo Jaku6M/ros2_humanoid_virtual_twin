@@ -18,12 +18,12 @@
             </geometry>
             <material name="grey"/>
         </visual>
-        <!-- <collision>
+        <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
                 <mesh filename="file://$(find ros2_humanoid_virtual_twin)/meshes/Right_Forearm.stl" scale="0.001 0.001 0.001"/>
             </geometry>
-        </collision> -->
+        </collision>
         <inertial>
             <origin xyz="0 0 -93.816e-3" rpy="0 0 0"/>
             <mass value="0.094"/>
@@ -41,7 +41,7 @@
     </xacro:if>
     <gazebo reference="Left_Forearm">
         <material>Gazebo/Grey</material>
-        <!-- <xacro:if value="$(arg use_gazebo_link_physics_coefficients)">
+        <xacro:if value="$(arg use_gazebo_link_physics_coefficients)">
           <mu1 value="${mu1_val}"/>
           <mu2 value="${mu2_val}"/>
           <kp value="${kp_val}" />
@@ -49,7 +49,7 @@
           <maxVel value="${maxVel_val}"/>
           <dampingFactor value="${dampigFactor_val}"/>
           <selfCollide>${selfCollide_val}</selfCollide>  
-        </xacro:if> -->
+        </xacro:if>
     </gazebo>
 </robot>
   

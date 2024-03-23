@@ -5,7 +5,6 @@
         <origin xyz="0.0 -0.017 -0.057" rpy="${pi/2} ${pi/2} 0"/>
         <parent link="Right_Arm"/>
         <child link="imu"/>
-        <dynamics damping="0.0" friction="0.0"/>
     </joint>
      
     <link name="imu">
@@ -28,9 +27,11 @@
         </inertial>
     </link>
     <gazebo reference="imu">
+        <!-- <gravity>true</gravity> -->
         <sensor name="MPU6050sensor" type="imu">
             <always_on>1</always_on>
-            <update_rate>10.0</update_rate>
+            <update_rate>40.0</update_rate>
+            <!-- <visualize>true</visualize> -->
         </sensor>
     </gazebo>
 </robot>
