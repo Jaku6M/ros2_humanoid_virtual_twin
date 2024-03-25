@@ -42,7 +42,22 @@ def generate_launch_description():
         Node(
             package="controller_manager",
             executable="ros2_control_node",
-            parameters=[controller_config],
+            parameters=[
+                {"robot_description": doc.toxml()}, controller_config],
+            output="screen",
+        ),
+
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+            output="screen",
+        ),
+
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["velocity_controller", "-c", "/controller_manager"],
             output="screen",
         ),
 
@@ -52,13 +67,6 @@ def generate_launch_description():
             arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
             output="screen",
         ),
-
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
-            output="screen",
-        ),        
 
         Node(
             package="robot_state_publisher",

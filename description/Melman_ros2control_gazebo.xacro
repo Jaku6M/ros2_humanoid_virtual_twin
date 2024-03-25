@@ -38,7 +38,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -54,7 +56,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -70,7 +74,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position">
                 <!-- <param name="initial_value">-0.1</param> -->
             </state_interface>
@@ -88,7 +94,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -104,7 +112,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -120,7 +130,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -136,7 +148,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -152,7 +166,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -168,7 +184,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position">
                 <!-- <param name="initial_value">-0.1</param> -->
             </state_interface>
@@ -186,7 +204,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -202,7 +222,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -218,7 +240,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -234,7 +258,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -250,7 +276,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -266,7 +294,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -282,7 +312,9 @@
               <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>  
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>  
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -298,7 +330,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -314,7 +348,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -330,7 +366,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
@@ -346,7 +384,9 @@
                 <param name="min">-5.0</param>
                 <param name="max">5.0</param>
             </command_interface>
-            <command_interface name="effort"/>                
+            <xacro:if value="$(arg use_gazebo)">
+                <command_interface name="effort"/>
+            </xacro:if>                
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
