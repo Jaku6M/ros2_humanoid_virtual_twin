@@ -35,29 +35,14 @@ def generate_launch_description():
 
     controller_config = os.path.join(
         get_package_share_directory(
-            package_name), "controllers", "controllers.yaml"
+            package_name), "controllers", "real_control.yaml"
     )
 
     return LaunchDescription([
         Node(
             package="controller_manager",
             executable="ros2_control_node",
-            parameters=[
-                {"robot_description": doc.toxml()}, controller_config],
-            output="screen",
-        ),
-
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
-            output="screen",
-        ),
-
-        Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["velocity_controller", "-c", "/controller_manager"],
+            parameters=[controller_config],
             output="screen",
         ),
 
@@ -67,6 +52,13 @@ def generate_launch_description():
             arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
             output="screen",
         ),
+
+        Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+            output="screen",
+        ),        
 
         Node(
             package="robot_state_publisher",

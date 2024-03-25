@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-  <!-- Definition of GAZEBO physics coefficients for LINKS -->
+  <!-- Definition of GAZEBO physics coefficients for all LINKS -->
 	<xacro:property name="kp_val" value="25000.0"/>
   <xacro:property name="kd_val" value="0.05"/>
   <xacro:property name="mu1_val" value="50"/>
@@ -8,13 +8,13 @@
   <xacro:property name="maxVel_val" value="0.1"/>
   <xacro:property name="dampigFactor_val" value="0.004"/>
   <xacro:property name="selfCollide_val" value="true"/>  
-  <!-- Definition of GAZEBO physics coefficients for JOINTS -->
+  <!-- Definition of GAZEBO physics coefficients for all JOINTS -->
   <xacro:property name="Damper_val" value="true"/>
   <xacro:property name="springstiffness_val" value="6.0"/>
   <xacro:property name="springReference_val" value="0.01"/>
   <xacro:property name="stopErp_val" value="0.2"/>
   <xacro:property name="stopCfm_val" value="0.2"/> 
-  <!-- Definition of URDF physics coefficients for JOINTS -->
+  <!-- Definition of URDF physics coefficients for all JOINTS -->
   <xacro:property name="damping_val" value="1.0"/>
   <xacro:property name="friction_val" value="1.0"/>
   <xacro:property name="maxVel_val" value="5.1"/>
@@ -32,5 +32,7 @@
   <xacro:include filename="RobotElements/left_arm.xacro"/>
   <xacro:include filename="RobotElements/right_arm.xacro"/>
   <xacro:include filename="RobotElements/head.xacro"/>
-  <xacro:include filename="imu.xacro"/>
+  <xacro:if value="$(arg use_gazebo)">
+    <xacro:include filename="imu.xacro"/>
+  </xacro:if>
 </robot>
