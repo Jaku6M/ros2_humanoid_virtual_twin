@@ -31,8 +31,6 @@ velocity_controller:
       - LAy
       - LAx
       - LFAy
-      - Hz
-      - Hy
 
 joint_trajectory_controller:
   ros__parameters:
@@ -55,8 +53,7 @@ joint_trajectory_controller:
       - LAy
       - LAx
       - LFAy
-      - Hz
-      - Hy
+
     command_joints:
       - RTz
       - RTx
@@ -76,8 +73,7 @@ joint_trajectory_controller:
       - LAy
       - LAx
       - LFAy
-      - Hz
-      - Hy
+
 
     command_interfaces:
       - position
