@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <joint name="imu_sensor_joint" type="fixed">
-        <origin xyz="0.0 -0.017 -0.057" rpy="${pi/2} ${pi/2} 0"/>
+        <origin xyz="0.0 -0.016 -0.057" rpy="${pi/2} ${pi/2} 0"/>
         <parent link="Right_Arm"/>
         <child link="imu"/>
     </joint>
@@ -11,27 +11,28 @@
         <collision>
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.02 0.01 0.002"/>
+                <box size="0.021 0.014 0.009"/>
             </geometry>
         </collision>
         <visual>
             <origin xyz="0.0 0.0 0.0"  rpy="0 0 0"/>
             <geometry>
-                <box size="0.02 0.01 0.002"/>
+                <box size="0.021 0.014 0.009"/>
             </geometry>
         </visual>
         <inertial>
-            <mass value="0.001" />
+            <mass value="0.009" />
             <origin xyz="0 0 0" rpy="0 0 0"/>
-            <inertia ixx="0.00000015" ixy="0" ixz="0" iyy="0.00000015" iyz="0" izz="0.00000015" />
+            <inertia ixx="16.401e-6" ixy="0" ixz="0" iyy="36.818e-6" iyz="0" izz="53.083e-6" />
         </inertial>
     </link>
     <gazebo reference="imu">
-        <!-- <gravity>true</gravity> -->
+        <material>Gazebo/Black</material>
+        <gravity>true</gravity>
         <sensor name="MPU6050sensor" type="imu">
             <always_on>1</always_on>
             <update_rate>40.0</update_rate>
-            <!-- <visualize>true</visualize> -->
+            <pose>0 0 0 ${pi/2} ${pi/2} 0</pose>
         </sensor>
     </gazebo>
 </robot>
