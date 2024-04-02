@@ -17,8 +17,12 @@
   <!-- Definition of URDF physics coefficients for all JOINTS -->
   <xacro:property name="damping_val" value="1.0"/>
   <xacro:property name="friction_val" value="1.0"/>
-  <xacro:property name="maxVel_val" value="5.1"/>
-  <xacro:property name="maxeffort_val" value="5.1"/>
+  <!-- Definition of URDF physics coefficients for JOINTS powered by MX64AR servos-->
+  <xacro:property name="maxVel_val" value="6.597"/>
+  <xacro:property name="maxeffort_val" value="6.0"/>
+  <!-- Definition of URDF physics coefficients for JOINTS powered by MX28AR servos-->
+  <xacro:property name="MX28maxVel_val" value="5.76"/>
+  <xacro:property name="MX28maxeffort_val" value="2.5"/>
   <!-- Definition of grey material-->
   <material name="grey">
       <color rgba="0.6 0.6 0.6 1"/>

@@ -5,7 +5,7 @@
         <parent link="Trunk"/>
         <child link="Left_ArmMounting"/>
         <axis xyz="0 1.0 0"/>
-        <limit lower="${-pi/2}" upper="${pi/2}" effort="${maxeffort_val}" velocity="${maxVel_val}"/>
+        <limit lower="${-pi/2}" upper="${pi/2}" effort="${MX28maxeffort_val}" velocity="${MX28maxVel_val}"/>
         <xacro:if value="$(arg use_URDF_joint_dynamics_coefficients)">
             <dynamics damping="${damping_val}" friction="${friction_val}"/>
         </xacro:if>
@@ -28,7 +28,6 @@
             <origin xyz="-3.335e-3 -17.703e-3 0" rpy="0 0 0"/>
             <mass value="0.011"/>
             <inertia ixx="2.246e-6" iyy="3.894e-6" izz="4.859e-6" ixy="0.637e-6" ixz="0"  iyz="0"/>
-
         </inertial>
     </link>
     <xacro:if value="$(arg use_gazebo_joint_physics_coefficients)">

@@ -25,9 +25,9 @@
             </geometry>
         </collision>
         <inertial>
-            <origin xyz="-21.137e-06 0.17e-03 14.739e-03" rpy="0 0 0"/>
-            <mass value="0.351"/>       
-            <inertia ixx="135.823e-6" iyy="317.524e-6" izz="266.663e-6" ixy="-1.265e-6" ixz="4.25e-6"  iyz="2.029e-6" />  
+            <origin xyz="-20.881e-3	-0.167e-3	-14.849e-3" rpy="0 0 0"/>
+            <mass value="0.294"/>
+            <inertia ixx="115.377e-6" iyy="266.21e-6" izz="222.99e-6" ixy="1.023e-6" ixz="-4.663e-6"  iyz="1.655e-6" /> 
         </inertial>
     </link>
     <xacro:if value="$(arg use_gazebo_joint_physics_coefficients)">

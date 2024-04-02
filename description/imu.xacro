@@ -23,7 +23,7 @@
         <inertial>
             <mass value="0.009" />
             <origin xyz="0 0 0" rpy="0 0 0"/>
-            <inertia ixx="16.401e-6" ixy="0" ixz="0" iyy="36.818e-6" iyz="0" izz="53.083e-6" />
+            <inertia ixx="147.609e-9" ixy="0" ixz="0" iyy="331.362e-9" iyz="0" izz="477.747e-9" />
         </inertial>
     </link>
     <gazebo reference="imu">

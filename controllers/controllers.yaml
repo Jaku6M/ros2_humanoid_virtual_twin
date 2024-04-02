@@ -162,7 +162,7 @@ joint_trajectory_controller:
         ff_velocity_scale: 0.0
         i: 5.0
         i_clamp: 0.0
-        p: 3.0
+        p: 45.7
       RAx:
         angle_wraparound: false
         d: 0.0
@@ -176,14 +176,14 @@ joint_trajectory_controller:
         ff_velocity_scale: 0.0
         i: 5.0
         i_clamp: 0.0
-        p: 3.0
+        p: 45.7
       LAy:
         angle_wraparound: false
         d: 0.0
         ff_velocity_scale: 0.0
         i: 5.0
         i_clamp: 0.0
-        p: 3.0
+        p: 45.7
       LAx:
         angle_wraparound: false
         d: 0.0
@@ -197,7 +197,7 @@ joint_trajectory_controller:
         ff_velocity_scale: 0.0
         i: 5.0
         i_clamp: 0.0
-        p: 3.0
+        p: 45.7
       Hz:
         angle_wraparound: false
         d: 0.0
