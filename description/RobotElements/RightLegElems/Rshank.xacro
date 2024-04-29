@@ -4,7 +4,7 @@
       <origin xyz="0 0 -128e-3" rpy="0 0 0"/>
       <parent link="Right_Thigh"/>
       <child link="Right_Shank"/>
-      <axis xyz="0 1.0 0"/>
+      <axis xyz="0 -1.0 0"/>
         <limit lower="${-pi/2}" upper="${pi/2}" effort="${maxeffort_val}" velocity="${maxVel_val}"/>
         <xacro:if value="$(arg use_URDF_joint_dynamics_coefficients)">
             <dynamics damping="${damping_val}" friction="${friction_val}"/>
