@@ -2,4 +2,5 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
   <xacro:include filename="HeadElems/Headmount.xacro"/>  
   <xacro:include filename="HeadElems/Head.xacro"/>
+  <xacro:include filename="HeadElems/camera.xacro"/>
 </robot>
