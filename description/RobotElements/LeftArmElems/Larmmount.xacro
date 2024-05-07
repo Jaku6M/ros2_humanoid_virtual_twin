@@ -5,9 +5,9 @@
         <parent link="Trunk"/>
         <child link="Left_ArmMounting"/>
         <axis xyz="0 1.0 0"/>
-        <limit lower="${-pi/2}" upper="${pi/2}" effort="${MX28maxeffort_val}" velocity="${MX28maxVel_val}"/>
+        <limit lower="${-pi}" upper="${pi}" effort="${MX28maxeffort_val}" velocity="${MX28maxVel_val}"/>
         <xacro:if value="$(arg use_URDF_joint_dynamics_coefficients)">
-            <dynamics damping="${damping_val}" friction="${friction_val}"/>
+            <dynamics damping="${damping_valMX28}" friction="${friction_valMX28}"/>
         </xacro:if>
     </joint>
     <link name="Left_ArmMounting">
@@ -32,11 +32,11 @@
     </link>
     <xacro:if value="$(arg use_gazebo_joint_physics_coefficients)">
     <gazebo reference="LAy">
-        <implicitSpringDamper>${Damper_val}</implicitSpringDamper>
-        <springStiffness>${springstiffness_val}</springStiffness>
-        <springReference>${springReference_val}</springReference>
-        <stopErp>${stopErp_val}</stopErp>
-        <stopCfm>${stopCfm_val}</stopCfm>
+        <implicitSpringDamper>${Damper_valMX28}</implicitSpringDamper>
+        <springStiffness>${springstiffness_valMX28}</springStiffness>
+        <springReference>${springReference_valMX28}</springReference>
+        <stopErp>${stopErp_valMX28}</stopErp>
+        <stopCfm>${stopCfm_valMX28}</stopCfm>
     </gazebo>    
     </xacro:if>
     <gazebo reference="Left_ArmMounting">

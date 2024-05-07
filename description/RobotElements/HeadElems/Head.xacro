@@ -1,6 +1,6 @@
 <?xml version = "1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <joint name="Hy" type="revolute">
+    <joint name="Hy" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <parent link="Head_Mounting"/>
         <child link="Head"/>

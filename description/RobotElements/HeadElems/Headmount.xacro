@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <joint name="Hz" type="revolute">
+    <joint name="Hz" type="fixed">
         <origin xyz="18.1e-3 -0.159e-3 38.5e-3" rpy="0 0 0"/>
         <parent link="Trunk"/>
         <child link="Head_Mounting"/>

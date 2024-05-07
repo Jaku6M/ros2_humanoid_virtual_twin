@@ -27,10 +27,8 @@ velocity_controller:
       - LFx
       - RAy
       - RAx
-      - RFAy
       - LAy
       - LAx
-      - LFAy
 
 joint_trajectory_controller:
   ros__parameters:
@@ -49,10 +47,8 @@ joint_trajectory_controller:
       - LFx
       - RAy
       - RAx
-      - RFAy
       - LAy
       - LAx
-      - LFAy
 
     command_joints:
       - RTz
@@ -69,10 +65,8 @@ joint_trajectory_controller:
       - LFx
       - RAy
       - RAx
-      - RFAy
       - LAy
       - LAx
-      - LFAy
 
 
     command_interfaces:
